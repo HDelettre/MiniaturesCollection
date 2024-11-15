@@ -8,13 +8,13 @@ exports.getAllModelCars = async (req, res) => {
     if (!response) {
       return res
         .status(404)
-        .json({ message: "Aucune donnée n'a été trouvée !" });
+        .json({ message: "Aucune donnée n'a été trouvée !", data:"" });
     }
-    return res.status(200).json(response);
+    return res.status(200).json({message: "Les données ont été récupérées ! ", data:response});
   } catch (error) {
     return res
       .status(500)
-      .json({ message: "Le serveur est indisponible !", error: error });
+      .json({ message: "Le serveur est indisponible !", data: error });
   }
 };
 

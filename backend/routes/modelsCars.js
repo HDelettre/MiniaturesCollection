@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const ctrlPath = require("../controllers/modelsCars.js");
+const ctrlPath = require("../controllers/modelsCars");
 //
 // ROUTES
 //

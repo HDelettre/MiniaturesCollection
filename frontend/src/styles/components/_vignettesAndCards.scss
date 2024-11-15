@@ -1,0 +1,17 @@
+.smallCard {
+  width: 18%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: $textSmall;
+  border:2px solid $colorFirst;
+  border-radius: 5px;
+
+  img {
+    width: 95%;
+    height: 15em;
+    object-fit: cover;
+    margin: $marginSmall;
+  }
+}

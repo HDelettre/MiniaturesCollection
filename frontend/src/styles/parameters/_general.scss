@@ -1,0 +1,36 @@
+body,
+.root,
+.appContainer {
+  width: 1535px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: auto;
+  color: $colorFirst;
+  background-color: $colorBack;
+  font-family: $fontText;
+  font-size: $textStd;
+}
+
+h1 {
+  font-family: $fontHeader;
+  font-size: $textHeader;
+  font-weight: 800;
+  color: $colorBack;
+  background-color: $colorFirst;
+  letter-spacing: .2rem;
+}
+
+h2 {
+  font-size: $textLarge;
+  font-weight: 600;
+}
+
+.displayContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}

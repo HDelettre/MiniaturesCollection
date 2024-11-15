@@ -1,0 +1,211 @@
+body,
+.root,
+.appContainer {
+  width: 1535px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: auto;
+  color: #2565ae;
+  background-color: white;
+  font-family: "Oswald", sans-serif;
+  font-size: 16px;
+}
+
+h1 {
+  font-family: "Alfa Slab One", serif;
+  font-size: 32px;
+  font-weight: 800;
+  color: white;
+  background-color: #2565ae;
+  letter-spacing: 0.2rem;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.displayContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.spinloader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #3c99dc;
+  border-bottom-color: #2565ae;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.titleBox {
+  width: 97%;
+  color: red;
+  border-left: 3px solid #2565ae;
+  border-bottom: 3px solid #2565ae;
+  border-bottom-left-radius: 6px;
+  margin-bottom: 10px;
+  padding: 3px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.fullLine {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 3px;
+}
+
+.fullBox {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 3px;
+  border-top: 1px solid red;
+  background-color: #F6F4F3;
+}
+
+.choiceBox {
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+}
+
+.smallFlag {
+  height: 20px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.trackPicture {
+  width: 95%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.normalIcon {
+  width: 10%;
+  text-align: center;
+  cursor: pointer;
+  line-height: 16px;
+  padding: 4px;
+}
+.normalIcon:hover {
+  color: white;
+  background-color: #2565ae;
+}
+
+.pictureButton {
+  width: 16px;
+  position: relative;
+}
+.pictureButton_file {
+  width: 16px;
+  opacity: 5%;
+  z-index: 1;
+  position: absolute;
+}
+
+.headerContainer {
+  width: 100%;
+  height: 100px;
+  background-color: #2565ae;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+  border: 1px solid #66d3fa;
+}
+.headerContainer_title {
+  width: 60%;
+  text-align: center;
+}
+.headerContainer_user {
+  width: 30%;
+  text-align: center;
+}
+
+.navigationBar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  border: 1px solid #66d3fa;
+  margin: 5px;
+}
+.navigationBar_button {
+  width: 10%;
+  text-align: center;
+  cursor: pointer;
+}
+.navigationBar_button:hover {
+  color: white;
+  background-color: #2565ae;
+}
+
+.smallCard {
+  width: 18%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  border: 2px solid #2565ae;
+  border-radius: 5px;
+}
+.smallCard img {
+  width: 95%;
+  height: 15em;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin: 3px;
+}
+
+.adminContainer {
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+.adminContainer_card {
+  width: 30%;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid #66d3fa;
+}
+
+.labelBox, .optionBox {
+  width: 98%;
+  text-align: center;
+  color: #2565ae;
+  font-family: "Oswald", sans-serif;
+  font-size: 16px;
+}/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,25 @@
+.adminContainer {
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+  
+  &_card {
+    width: 30%;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid $colorThird;
+  }
+}
+
+.labelBox, .optionBox {
+  width: 98%;
+  text-align: center;
+  color: $colorFirst;
+  font-family: $fontText;
+  font-size: $textStd;
+}

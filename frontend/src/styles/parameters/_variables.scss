@@ -1,10 +1,19 @@
-// font-family: "Alfa Slab One", serif; TITLE
-// font-family: "Oswald", sans-serif;   TEXT
-
 // FONTS TYPE
-
+$fontHeader:"Alfa Slab One", serif;
+$fontText:"Oswald", sans-serif;
 // FONTS SIZE
-
+$textStd:16px;
+$textSmall:12px;
+$textLarge:20px;
+$textHeader:32px;
 // COLORS
-
+$colorFirst:#2565ae;
+$colorSecond:#3c99dc;
+$colorThird:#66d3fa;
+$colorFourth:red;
+$colorBack:white;
 // MARGIN & PADDING
+$marginSmall:3px;
+$marginMedium:5px;
+$marginLarge:10px;
+$marginXLarge:20px;

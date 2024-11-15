@@ -1,0 +1,24 @@
+.normalIcon {
+  width: 10%;
+  text-align: center;
+  cursor: pointer;
+  line-height: $textStd;
+  padding: 4px;
+
+  &:hover {
+    color: $colorBack;
+    background-color: $colorFirst;
+  }
+}
+
+.pictureButton {
+  width: $textStd;
+  position: relative;
+  
+  &_file {
+    width: $textStd;
+    opacity: 5%;
+z-index: 1;
+position: absolute;
+  }
+}
