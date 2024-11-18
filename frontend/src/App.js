@@ -5,13 +5,13 @@ import React, { useState, useEffect } from "react";
 import Header from "./components/headerAndFooter/Header";
 import NavigationBar from "./components/navigation/NavigationBar";
 import HomeContainer from "./components/home/HomeContainer";
-import AdminContainerA from "./components/admin/AdminContainer_A";
 import DriversContainer from "./components/drivers/DriversContainer";
 import SeasonContainer from "./components/seasons/SeasonContainer";
 import TeamContainer from "./components/teams/TeamContainer";
 
 // IMPORT FUNCTIONS
 import { GET_ALL_MODELS } from "./utils/modelCarRequest";
+import AddNewCar from "./components/admin/AddNewCar";
 
 function App() {
   const [menuIndex, setMenuIndex] = useState("home");
@@ -38,7 +38,7 @@ function App() {
       {menuIndex === "season" ? <SeasonContainer /> : ""}
       {menuIndex === "team" ? <TeamContainer /> : ""}
       {menuIndex === "driver" ? <DriversContainer /> : ""}
-      {menuIndex === "admin" ? <AdminContainerA /> : ""}
+      {menuIndex === "admin" ? <AddNewCar /> : ""}
     </div>
   );
 }

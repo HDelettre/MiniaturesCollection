@@ -1,14 +1,19 @@
 import React from "react";
 
-const CategorieChoice = ({setCategorie}) => {
-  const categorieOption = ["F1", "F2", "F3", "AUTRES"];
+const CategorieChoice = ({ setCategorie }) => {
+  const categorieOption = ["F1 with race", "F1 without race", "Autres"];
 
   const selectHandle = (e) => {
-    setCategorie(e.target.value)
+    const elmtIndex = document.getElementById("categorie");
+    if (elmtIndex.selectedIndex > 0) {
+      setCategorie(e.target.value);
+    } else {
+      setCategorie();
+    }
   };
 
   return (
-    <div className="choiceBox" >
+    <div className="choiceBox">
       <label className="labelBox">Choix de la catégorie :</label>
       <select
         className="optionBox"
@@ -16,7 +21,9 @@ const CategorieChoice = ({setCategorie}) => {
         id="categorie"
         onChange={selectHandle}
       >
-        <option name="choice" key="choice" id="choice">Sélectionner dans la liste</option>
+        <option name="choice" key="choice" id="choice">
+          Sélectionner dans la liste
+        </option>
         {categorieOption.map((data) => (
           <option name={data} key={data} id={data}>
             {data}

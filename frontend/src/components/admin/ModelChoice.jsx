@@ -1,26 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const ModelChoice = ({ setModelName, setDriverList }) => {
+// IMPORT COMPONENTS
+import InputCase from "../standardElements/InputCase";
 
-  const [carsList, setCarsList] = useState(["un", "deux", "trois"]);
-  
+const ModelChoice = ({categorie, season, dataBank, setModelData }) => {
+
+  const [carsList, setCarsList] = useState([]);
+  let selectAccess = true;
+
+  if (categorie === "F1 without race" && season) {selectAccess=false}
+  if (categorie === "Autres" && season) {selectAccess=false}
+
+  useEffect(() => {
+    if (categorie === "F1 without race" && dataBank)
+    {setCarsList(dataBank.cars)}
+  }, [dataBank, categorie]);
+
   const selectHandle = async (e) => {
-    const elmtIndex = document.getElementById("model");
+    const elmtIndex = document.getElementById("modelChoice");
     if (elmtIndex.selectedIndex > 0) {
-      await setModelName(e.target.value);
-      await setDriverList(carsList[elmtIndex.selectedIndex - 1].drivers);
+      setModelData(carsList[elmtIndex.selectedIndex -1])
+    } else {
+      setModelData()
     }
   };
 
   return (
     <div className="choiceBox">
       <label className="labelBox">Choix du modèle :</label>
+      {categorie === "F1 without race" && dataBank ?
       <select
-        className="optionBox"
+      className="optionBox"
         name="model"
-        id="model"
+        id="modelChoice"
         onChange={selectHandle}
-      >
+        disabled={selectAccess}
+        >
         <option name="choice" key="choice" id="choice">
           Sélectionner dans la liste
         </option>
@@ -30,6 +45,9 @@ const ModelChoice = ({ setModelName, setDriverList }) => {
           </option>
         ))}
       </select>
+      :
+      <InputCase generalData={"MODEL"} setGeneralData={setModelData} selectAccess={selectAccess} />
+      }
     </div>
   );
 };

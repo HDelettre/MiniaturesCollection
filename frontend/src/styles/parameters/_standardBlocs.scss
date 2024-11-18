@@ -32,17 +32,33 @@
 
 .choiceBox {
   width: 15%;
+  min-height: 60px;
   display: flex;
   flex-direction: column;
+  border: 1px solid $colorFirst;
+  border-radius: 8px;
+  padding: $marginLarge;
 }
 
 .smallFlag {
-  
   height: $textLarge;
+  object-fit: cover;
+}
+
+.bigFlag {
+  height: 100px;
   object-fit: cover;
 }
 
 .trackPicture {
   width: 95%;
   object-fit: cover;
+}
+
+.redBox {
+  width: 98%;
+  background-color: #FF99CC;
+  color: white;
+  text-align: center;
+  margin: $marginSmall;
 }

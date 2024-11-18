@@ -1,12 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from "react";
 
-const RaceChoice = ({season, dataBank, setRaceData}) => {
-  const [raceList, setRaceList] = useState([])
+// IMPORT COMPONENTS
+import InputCase from "../standardElements/InputCase";
+
+const RaceChoice = ({ season, dataBank, setRaceData, categorie }) => {
+  const [raceList, setRaceList] = useState([]);
+  let selectAccess = true;
 
   useEffect(() => {
-    if (season && dataBank) {
+    if (season && dataBank && categorie === "F1 with race") {
       const calendarData = dataBank.calendar;
-      const calendarInfo = []
+      const calendarInfo = [];
       for (let i = 0; i < calendarData.length; i++) {
         const raceInfo = {
           name: calendarData[i].race,
@@ -17,45 +21,58 @@ const RaceChoice = ({season, dataBank, setRaceData}) => {
           trackPicture: calendarData[i].trackPicture,
           subscript: calendarData[i].subscript,
         };
-        calendarInfo.push(raceInfo)
+        calendarInfo.push(raceInfo);
       }
       setRaceList(calendarInfo);
     }
-  }, [season, dataBank]);
+  }, [season, dataBank, categorie]);
+
+  if (categorie === "F1 with race" && season && dataBank) {
+    selectAccess = false;
+  } else if (categorie === "Autres" && season) {
+    selectAccess = false;
+  }
 
   const selectHandle = async (e) => {
     const elmtIndex = document.getElementById("race");
     if (elmtIndex.selectedIndex > 0) {
       await setRaceData(raceList[elmtIndex.selectedIndex - 1]);
+    } else {
+      await setRaceData();
     }
   };
 
-  return RaceChoice ? (
+  return (
     <div className="choiceBox">
       <label className="labelBox">Choix de la course :</label>
-      <select
-        className="optionBox"
-        name="race"
-        id="race"
-        onChange={selectHandle}
-      >
-        <option name="choice" key="choice" id="choice">
-          Sélectionner dans la liste
-        </option>
-        {dataBank !== "" && raceList.length > 0 ?
-        <>
-        {raceList.map((data) => (
-          <option name={data.name} key={data.name} id={data.name}>
-          {data.name}
+      {categorie === "F1 with race" ? (
+        <select
+          className="optionBox"
+          name="race"
+          id="race"
+          onChange={selectHandle}
+          disabled={selectAccess}
+        >
+          <option name="choice" key="choice" id="choice">
+            Sélectionner dans la liste
           </option>
-        ))}
-        </>
-       : ("")}
-      </select>
+          {dataBank && raceList.length > 0 ? (
+            <>
+              {raceList.map((data) => (
+                <option name={data.name} key={data.name} id={data.name}>
+                  {data.name}
+                </option>
+              ))}
+            </>
+          ) : (
+            ""
+          )}
+        </select>
+      ) : (
+        <InputCase generalData={"RACE"} setGeneralData={setRaceData} selectAccess={selectAccess} />
+      )}
     </div>
-  ) : (
-    <span className='spinloader'/>
   );
-}
+};
 
 export default RaceChoice;

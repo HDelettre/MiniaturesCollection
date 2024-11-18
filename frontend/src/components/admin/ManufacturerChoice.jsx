@@ -1,23 +1,38 @@
-import React from 'react';
+import React from "react";
 
-const ManufacturerChoice = ({setManufacturerData}) => {
-  const categorieOption = ["F1", "F2", "F3", "AUTRES"];
+// IMPORT DATABANK
+import listOfManufacturer from "../../dataBank/listOfManufacturer";
+
+const ManufacturerChoice = ({ setManufacturerData, categorie, season, modelData, driverData }) => {
+  let selectAccess = true;
+
+  if (categorie && season && modelData && driverData) {
+    selectAccess = false;
+  }
 
   const selectHandle = (e) => {
-    setManufacturerData(e.target.value)
+    const elmtIndex = document.getElementById("manufacturer");
+    if (elmtIndex.selectedIndex > 0) {
+      setManufacturerData({ name: e.target.value });
+    } else {
+      setManufacturerData();
+    }
   };
 
   return (
-    <div className="choiceBox" >
-      <label className="labelBox">Choix de la catégorie :</label>
+    <div className="choiceBox">
+      <label className="labelBox">Choix du fabricant :</label>
       <select
         className="optionBox"
-        name="categorie"
-        id="categorie"
+        name="manufacturer"
+        id="manufacturer"
         onChange={selectHandle}
+        disabled={selectAccess}
       >
-        <option name="choice" key="choice" id="choice">Sélectionner dans la liste</option>
-        {categorieOption.map((data) => (
+        <option name="choice" key="choice" id="choice">
+          Sélectionner dans la liste
+        </option>
+        {listOfManufacturer.map((data) => (
           <option name={data} key={data} id={data}>
             {data}
           </option>
@@ -25,6 +40,6 @@ const ManufacturerChoice = ({setManufacturerData}) => {
       </select>
     </div>
   );
-}
+};
 
 export default ManufacturerChoice;

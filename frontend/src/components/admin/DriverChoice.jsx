@@ -1,13 +1,28 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from "react";
 
-const DriverChoice = ({dataBank, raceData, season, setDriverData}) => {
+// INPUT COMPONENTS
+import InputCase from "../standardElements/InputCase";
 
-  const [driverList, setDriverList] = useState([])
+// IMPORT FUNCTIONS
+import { dataOfCar } from "../../utils/searchCarData";
 
-  console.log("DATABANK IN DRIVERCHOICE: ", dataBank)
+const DriverChoice = ({
+  categorie,
+  season,
+  raceData,
+  modelData,
+  setDriverData,
+  setModelData,
+}) => {
+  const [driverList, setDriverList] = useState([]);
+  let selectAccess = true
+
+  if (categorie === "F1 with race" && raceData) {selectAccess=false}
+  if (categorie === "F1 without race" && modelData) {selectAccess=false}
+  if (categorie && categorie==="Autres" && season) {selectAccess=false}
 
   useEffect(() => {
-    if (raceData && dataBank) {
+    if (raceData && categorie === "F1 with race") {
       const listDrivers = [];
       for (let i = 0; i < raceData.subscript.length; i++) {
         const driverInfo = {
@@ -25,47 +40,69 @@ const DriverChoice = ({dataBank, raceData, season, setDriverData}) => {
         listDrivers.push(driverInfo);
       }
       setDriverList(listDrivers);
-    }
-  }, [raceData, dataBank]);
-
-  const optionauth = "disable"
-
-  // const driverSelectSurvey = document.getElementById("driver")
-  // if (optionauth === "disabled") {driverSelectSurvey}
-  // driverSelectSurvey.addEventListener 
+    } else if (modelData && categorie === "F1 without race") {
+      const listDrivers = [];
+      for (let i = 0; i < modelData.drivers.length; i++) {
+        const driverInfo = {
+          name: modelData.drivers[i].name,
+          country: modelData.drivers[i].nation,
+          model: modelData.model,
+          team: modelData.team,
+        };
+        listDrivers.push(driverInfo);
+      }
+      setDriverList(listDrivers);
+      
+    } 
+  }, [categorie, modelData, raceData]);
 
   const selectHandle = async () => {
-    const elmtIndex = document.getElementById("driver");
+    const elmtIndex = document.getElementById("driverChoice");
     if (elmtIndex.selectedIndex > 0) {
       await setDriverData(driverList[elmtIndex.selectedIndex - 1]);
+      if (!modelData) {
+        const carData = dataOfCar(
+          driverList[elmtIndex.selectedIndex - 1].model,
+          season
+        );
+        await setModelData(carData);
+      }
+    } else {
+      await setDriverData()
     }
   };
 
   return (
     <div className="choiceBox">
       <label className="labelBox">Choix du pilote :</label>
-      <select
-        className="optionBox"
-        name="driver"
-        id="driver"
-        onChange={selectHandle}
-        disabled={optionauth === "disabled" ? true : false}
-      >
-        <option name="choice" key="choice" id="choice">
-          Sélectionner dans la liste
-        </option>
-        {driverList.length > 0 ? 
-        <>
-        {driverList.map((data) => (
-          <option name={data.name} key={data.name} id={data.name}>
-            {data.name}
+      {(raceData && categorie === "F1 with race") || (modelData && categorie==="F1 without race")  ? (
+        <select
+          className="optionBox"
+          name="driver"
+          id="driverChoice"
+          onChange={selectHandle}
+          disabled={selectAccess}
+        >
+          <option name="choice" key="choice" id="choice">
+            Sélectionner dans la liste
           </option>
-        ))}
-        </>
-       : ""}
-      </select>
+          {driverList.length > 0 ? (
+            <>
+              {driverList.map((data) => (
+                <option name={data.name} key={data.name} id={data.name}>
+                  {data.name}
+                </option>
+              ))}
+            </>
+          ) : (
+            ""
+          )}
+        </select>
+      ) : (
+        <InputCase generalData={"DRIVER"} setGeneralData={setDriverData} selectAccess={selectAccess} />
+      )}
     </div>
   );
-}
+};
 
 export default DriverChoice;

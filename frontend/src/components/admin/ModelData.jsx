@@ -1,127 +1,110 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-// IMPORT COMPONENTS
-import CategorieChoice from "./CategorieChoice";
-import SeasonChoice from "./SeasonChoice";
-import ModelChoice from "./ModelChoice";
-import ModelWithRace from "./ModelWithRace";
-import RaceChoice from "./RaceChoice";
-import DriverChoice from "./DriverChoice";
-import PictureBox from "../standardElements/PictureBox";
+//IMPORT COMPONENTS
 import InfoBox from "../standardElements/InfoBox";
+import InputBox from "./InputBox";
+import StatusChoice from "./StatusChoice";
+import PictureBox from "../standardElements/PictureBox";
+
 
 const ModelData = ({
-  setDataBank,
-  dataBank,
-  driverData,
-  setDriverData,
-  raceData,
-  setRaceData,
+  categorie,
   season,
-  setSeason
+  raceData,
+  driverData,
+  modelCarData,
+  chptData,
+  manufacturerData,
+  reference,
+  setReference,
+  setModelStatus,
+  modelStatus,
 }) => {
-  const pathImageFile = `${process.env.REACT_APP_PICTURES}/modelCarImage`;
-  const pathPhotoFile = `${process.env.REACT_APP_PICTURES}/modelCars`;
+  const [pictureName, setPictureName] = useState(
+    `${process.env.REACT_APP_MODELCARS}/defaultPicture.png`
+  );
+  const [pictureFile, setPictureFile] = useState();
 
-  const [categorie, setCategorie] = useState("");
-  const [modelName, setModelName] = useState("");
-  const [raceName, setRaceName] = useState("");
-  const [withRace, setWithRace] = useState(true);
-  const [calendar, setCalendar] = useState();
-  const [imageName, setImageName] = useState(`${pathImageFile}/defaultPicture.png`);
-  const [imageFile, setImageFile] = useState();
-  const [photoName, setPhotoName] = useState(`${pathPhotoFile}/defaultPicture.png`);
-  const [photoFile, setPhotoFile] = useState();
+  const saveHandle=() => {
+    // RECHERCHE DES ID RACE, DRIVER, MODEL, MANUFACTURER
+    const bodyRequest = {
+      categorie:categorie,
+      season:season,
+      race:raceData.name,
+      driver:driverData.name,
+      model: modelCarData.carName,
+      qualif: driverData.qualif,
+      result: driverData.race,
+      bestLap: driverData.bestLap,
+      chpt:"",
+      manufacturer:manufacturerData.name,
+      reference: reference,
+      status: modelStatus,
+    };
 
-  const [driverList, setDriverList] = useState();
+    console.log("BODYREQUEST : ", bodyRequest)
 
-  
-
-  useEffect(() => {
-    if (raceData && dataBank) {
-      const listDrivers = [];
-      for (let i = 0; i < raceData.subscript.length; i++) {
-        const driverInfo = {
-          name: raceData.subscript[i].driver,
-          country: raceData.subscript[i].nation,
-          model: raceData.subscript[i].car,
-          team: raceData.subscript[i].team,
-          constructor: raceData.subscript[i].constructor,
-          engine: raceData.subscript[i].engine,
-          tyres: raceData.subscript[i].tyres,
-          qualif: raceData.subscript[i].qualif[0],
-          race: raceData.subscript[i].result[0],
-          bestLap: raceData.subscript[i].bestLap[0],
-        };
-        listDrivers.push(driverInfo);
-      }
-      setDriverList(listDrivers);
-    }
-  }, [raceData, dataBank]);
+    // on sauvegarde le modèle, on récupère le modelCarId, puis on enregistre la photo
+  }
 
   return (
     <div className="adminContainer_card">
       <div className="fullLine">
-      <h3>DEFINIR LE MODELE</h3>
-      <span className="fa-solid fa-floppy-disk normalIcon" title="Enregistrer le modèle" />
-      
+        <h3>DONNEES SUR LA MINIATURE</h3>
+        <span
+          className="fa-solid fa-floppy-disk normalIcon"
+          title="Enregistrer le modèle"
+          onClick={saveHandle}
+        />
       </div>
-     
-
-      <CategorieChoice setCategorie={setCategorie} />
-      
-
-      <ModelWithRace withRace={withRace} setWithRace={setWithRace} />
-      <SeasonChoice setSeason={setSeason} setDataBank={setDataBank} />
-      {categorie === "F1" && season && dataBank && withRace === false ? (
-        <ModelChoice
-          carsList={dataBank.cars}
-          setModelName={setModelName}
-          setDriverList={setDriverList}
-        />
+      <InfoBox title={"Categorie :"} data={categorie} />
+      <InfoBox title={"Saison :"} data={season} />
+      {raceData ? (
+        <InfoBox title={"Course :"} data={raceData.name} />
       ) : (
-        ""
+        <div className="redBox">PAS DE COURSE</div>
       )}
-      {categorie === "F1" &&
-      season &&
-      dataBank &&
-      withRace === true &&
-      calendar ? (
-        <RaceChoice
-          raceList={calendar}
-          setRaceName={setRaceName}
-          setRaceData={setRaceData}
-        />
+      {driverData ? (
+        <InfoBox title={"Voiture :"} data={driverData.model} />
       ) : (
-        ""
+        <div className="redBox">VOITURE A CONFIRMER</div>
       )}
-      {driverList ? (
-        <DriverChoice driverList={driverList} setDriverData={setDriverData} />
-      ) : (
-        ""
-      )}
-      {driverData && withRace === true ? (
+      {driverData ? (
         <>
-          <InfoBox title={"Model :"} data={driverData.model} />
+          <InfoBox title={"Pilote :"} data={driverData.name} />
+          <InfoBox
+            title={"Qualification :"}
+            data={driverData.qualif.position}
+          />
           <InfoBox title={"Résultat :"} data={driverData.race.position} />
-          <PictureBox
-            title={"Ajouter une image du modèle"}
-            imageName={imageName}
-            pathFile={pathImageFile}
-            setImageName={setImageName}
-            setImageFile={setImageFile}
+          <InfoBox
+            title={"Meilleur tour :"}
+            data={driverData.bestLap.position}
           />
         </>
       ) : (
-        ""
+        <div className="redBox">PILOTE A CONFIRMER</div>
       )}
-      {driverData ? (
+      {manufacturerData ? (
+        <>
+          <InfoBox title={"Fabricant :"} data={manufacturerData.name} />
+          <InputBox
+            title={"Référence :"}
+            generalData={reference}
+            setGeneralData={setReference}
+          />
+          <StatusChoice setModelStatus={setModelStatus} />
+        </>
+      ) : (
+        <div className="redBox">FABRICANT A CONFIRMER</div>
+      )}
+      {modelStatus ? (
         <PictureBox
-          title={"Ajouter une photo du modèle"}
-          imageName={photoName}
-          pathFile={pathPhotoFile}
-          setImageName={setPhotoName}
-          setImageFile={setPhotoFile}
+          title={"Photo de la Miniature"}
+          imageName={pictureName}
+          pathFile={`${process.env.REACT_APP_MODELCARS}`}
+          setImageName={setPictureName}
+          setImageFile={setPictureFile}
         />
       ) : (
         ""
