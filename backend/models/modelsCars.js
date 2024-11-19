@@ -43,7 +43,11 @@ const MODELCARS = sequelize.define("MODELCARS", {
   status: {
     type: DataTypes.STRING,
     allowNull:false
-  }
+  },
+  imageName: {
+    type: DataTypes.STRING,
+    allowNull:false
+  },
 });
 
 MODELCARS.hasMany(PICTURESCARS, {foreignKey: "modelCarsId", onDelete: "CASCADE"});

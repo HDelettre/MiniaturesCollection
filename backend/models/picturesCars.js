@@ -14,7 +14,7 @@ const PICTURECARS = sequelize.define("PICTURECARS", {
     type: DataTypes.INTEGER(4).ZEROFILL,
     allowNull: false
   },
-  pictureCarsName: {
+  pictureName: {
     type: DataTypes.STRING,
     allowNull: false
   }

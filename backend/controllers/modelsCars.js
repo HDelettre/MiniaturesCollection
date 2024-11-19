@@ -1,6 +1,14 @@
 const MODELCARS = require("../models/modelsCars");
 
-exports.createModelCar = async (req, res) => {};
+exports.createModelCar = async (req, res) => {
+  const newModelCars = MODELCARS.build(req.body);
+    try {
+      await newModelCars.save();
+      return res.status(201).json({message: "Le modèle a été ajouté dans la base !", data: newModelCars });
+    } catch (error) {
+      return res.status(500).json({ message: "CreateModelCar : Le serveur est indisponible !", data: error });
+    }
+};
 
 exports.getAllModelCars = async (req, res) => {
   try {
@@ -14,7 +22,7 @@ exports.getAllModelCars = async (req, res) => {
   } catch (error) {
     return res
       .status(500)
-      .json({ message: "Le serveur est indisponible !", data: error });
+      .json({ message: "GetAllModelCars : Le serveur est indisponible !", data: error });
   }
 };
 

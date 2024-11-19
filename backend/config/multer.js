@@ -10,10 +10,12 @@ const maximumPictureSize = 5000000;
 
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
-    if (file.fieldname === "modelCarPicture") {
+    if (file.fieldname === "modelPicture") {
       callback(null, "pictures/modelCars");
     } else if (file.fieldname === "userAvatar") {
       callback(null, "pictures/users");
+    } else  if (file.fieldname === "imageFile"){
+      callback(null, "pictures/modelCarImage");
     }
   },
 
@@ -24,6 +26,8 @@ const storage = multer.diskStorage({
       fileName = req.body.modelCarsId + "_" + Date.now() + "." + fileExtension;
     } else if (file.fieldname === "userAvatar") {
       fileName = req.body.userId + fileExtension;
+    } else   if (file.fieldname === "imageFile"){
+      fileName = req.body.imageName;
     }
     callback(null, fileName);
   },
@@ -42,6 +46,7 @@ module.exports = multer({
   fileFilter: fileChecking,
   limits: { fileSize: maximumPictureSize },
 }).fields([
-  { name: "modelCarPicture", maxCount: 1 },
+  { name: "modelPicture", maxCount: 1 },
   { name: "userAvatar", maxCount: 1 },
+  {name: "imageFile", maxCount:1},
 ]);

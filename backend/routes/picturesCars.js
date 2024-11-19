@@ -10,6 +10,7 @@ router.get("/", ctrlPath.getAllPictureCars);
 router.get("/:id", ctrlPath.getOnePictureCar);
 router.patch("/:id",multer, ctrlPath.updatePictureCar);
 router.delete("/:id", ctrlPath.deletePictureCar);
+router.post("/image",multer, ctrlPath.addImage);
 //
 // EXPORTS
 //

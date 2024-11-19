@@ -45,6 +45,7 @@ const AddCarMenu = ({
         season={season}
         dataBank={dataBank}
         setModelData={setModelData}
+        setRaceData={setRaceData}
       />
 
       <DriverChoice

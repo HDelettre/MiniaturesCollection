@@ -8,10 +8,10 @@ import HomeContainer from "./components/home/HomeContainer";
 import DriversContainer from "./components/drivers/DriversContainer";
 import SeasonContainer from "./components/seasons/SeasonContainer";
 import TeamContainer from "./components/teams/TeamContainer";
+import AddNewCar from "./components/admin/AddNewCar";
 
 // IMPORT FUNCTIONS
 import { GET_ALL_MODELS } from "./utils/modelCarRequest";
-import AddNewCar from "./components/admin/AddNewCar";
 
 function App() {
   const [menuIndex, setMenuIndex] = useState("home");
@@ -38,7 +38,7 @@ function App() {
       {menuIndex === "season" ? <SeasonContainer /> : ""}
       {menuIndex === "team" ? <TeamContainer /> : ""}
       {menuIndex === "driver" ? <DriversContainer /> : ""}
-      {menuIndex === "admin" ? <AddNewCar /> : ""}
+      {menuIndex === "admin" ? <AddNewCar setMenuIndex={setMenuIndex} setModelsUpload={setModelsUpload} /> : ""}
     </div>
   );
 }

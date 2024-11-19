@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import AddCarMenu from "./AddCarMenu";
 import ModelCarInfo from "./ModelCarInfo";
 
-const AddNewCar = () => {
+const AddNewCar = ({setModelsUpload, setMenuIndex}) => {
   const [categorie, setCategorie] = useState("");
   const [season, setSeason] = useState("");
   const [dataBank, setDataBank] = useState("");
@@ -40,8 +40,8 @@ const AddNewCar = () => {
         modelData={modelData}
         driverData={driverData}
         manufacturerData={manufacturerData}
-        setManufacturerData={setManufacturerData}
-        dataBank={dataBank}
+        setMenuIndex={setMenuIndex}
+        setModelsUpload={setModelsUpload}
       />
     </div>
   );

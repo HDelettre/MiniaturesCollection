@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 // IMPORT COMPONENTS
 import InputCase from "../standardElements/InputCase";
 
-const ModelChoice = ({categorie, season, dataBank, setModelData }) => {
+const ModelChoice = ({categorie, season, dataBank, setModelData, setRaceData }) => {
 
   const [carsList, setCarsList] = useState([]);
   let selectAccess = true;
@@ -20,6 +20,7 @@ const ModelChoice = ({categorie, season, dataBank, setModelData }) => {
     const elmtIndex = document.getElementById("modelChoice");
     if (elmtIndex.selectedIndex > 0) {
       setModelData(carsList[elmtIndex.selectedIndex -1])
+      setRaceData({name:""})
     } else {
       setModelData()
     }
