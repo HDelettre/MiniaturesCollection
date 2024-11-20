@@ -25,9 +25,27 @@ exports.addPictureCar = async (req, res) => {
   }
 };
 
-exports.getAllPictureCars = async (req, res) => {};
+exports.getAllPictureCars = async (req, res) => {
+  try {
+    const reponse = await PICTURECARS.findAll({
+      where: { modelCarsId: parseInt(req.params.id) },
+    });
+    return res.status(200).json({message: "Les images sont chargées !", data :reponse});
+  } catch (error) {
+    return res.status(500).json({message: "Get All Picture : Erreur du serveur !", data: error});
+  }
+};
 
-exports.getOnePictureCar = async (req, res) => {};
+exports.getOnePictureCar = async (req, res) => {
+  try {
+    const reponse = await PICTURECARS.findOne({
+      where: { modelCarsId: parseInt(req.params.id) },
+    });
+    return res.status(200).json({message: "L'image est chargée !", data :reponse});
+  } catch (error) {
+    return res.status(500).json({message: "Get One Picture : Erreur du serveur !", data: error});
+  }
+};
 
 exports.updatePictureCar = async (req, res) => {};
 
@@ -38,19 +56,4 @@ exports.addImage = async (req, res) => {
     return res
       .status(201)
       .json({ message: "L'image a été sauvegardé !", data: "" });
-  // try {
-  //   const fs = require("fs");
-  //   console.log("ADD IMAGE")
-  //   fs.writeFile(`pictures/modelCarImage/${req.imageName}`, req.imageFile);
-  //   return res
-  //     .status(201)
-  //     .json({ message: "L'image a été sauvegardé !", data: "" });
-  // } catch (error) {
-  //   return res
-  //     .status(500)
-  //     .json({
-  //       message: "AddImage : Le serveur est indisponible !",
-  //       data: error,
-  //     });
-  // }
 };

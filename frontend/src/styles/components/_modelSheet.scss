@@ -1,0 +1,49 @@
+.modelSheetTitleBox {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border: 6px double $colorSecond;
+  border-radius: 12px;
+  margin: $marginLarge;
+  padding: $marginSmall;
+  
+  h2 {
+    width: 50%;
+    text-align: center;
+  }
+
+  img {
+    width: 15%;
+    object-fit: contain;
+  }
+}
+
+.modelSheetContainer {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.modelSheetCard, .modelSheetSmallCard {
+  width: 20%;
+  height: 345px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border:3px solid $colorFirst;
+  border-radius: 5px;
+}
+
+.modelSheetSmallCard {
+  height: 150px;
+  margin-top: $marginLarge;
+
+  h3 {
+    margin: $marginLarge;
+  }
+}

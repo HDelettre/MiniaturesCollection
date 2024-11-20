@@ -35,6 +35,13 @@ h2 {
   justify-content: flex-start;
 }
 
+.picture {
+  width: 95%;
+  height: 160px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
 .spinloader {
   width: 48px;
   height: 48px;
@@ -56,6 +63,10 @@ h2 {
 }
 .titleBox {
   width: 97%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
   color: red;
   border-left: 3px solid #2565ae;
   border-bottom: 3px solid #2565ae;
@@ -120,6 +131,18 @@ h2 {
   color: white;
   text-align: center;
   margin: 3px;
+}
+
+.pictureBar {
+  width: 90%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-top: 1px solid #2565ae;
+  padding: 3px;
+}
+.pictureBar span {
+  cursor: pointer;
 }
 
 .normalIcon {
@@ -228,4 +251,52 @@ h2 {
   color: #2565ae;
   font-family: "Oswald", sans-serif;
   font-size: 16px;
+}
+
+.modelSheetTitleBox {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border: 6px double #3c99dc;
+  border-radius: 12px;
+  margin: 10px;
+  padding: 3px;
+}
+.modelSheetTitleBox h2 {
+  width: 50%;
+  text-align: center;
+}
+.modelSheetTitleBox img {
+  width: 15%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.modelSheetContainer {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.modelSheetCard, .modelSheetSmallCard {
+  width: 20%;
+  height: 345px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border: 3px solid #2565ae;
+  border-radius: 5px;
+}
+
+.modelSheetSmallCard {
+  height: 150px;
+  margin-top: 10px;
+}
+.modelSheetSmallCard h3 {
+  margin: 10px;
 }/*# sourceMappingURL=styles.css.map */

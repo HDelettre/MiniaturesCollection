@@ -3,6 +3,7 @@ const {DataTypes} = require("sequelize");
 const sequelize = require("../config/database");
 
 const PICTURESCARS = require("./picturesCars");
+const POSTS = require("./posts");
 
 const MODELCARS = sequelize.define("MODELCARS", {
   modelCarsId: {
@@ -48,9 +49,14 @@ const MODELCARS = sequelize.define("MODELCARS", {
     type: DataTypes.STRING,
     allowNull:false
   },
+  LikedBy: {
+    type: DataTypes.STRING,
+    allowNull:false
+  },
 });
 
 MODELCARS.hasMany(PICTURESCARS, {foreignKey: "modelCarsId", onDelete: "CASCADE"});
+MODELCARS.hasMany(POSTS, {foreignKey: "modelCarsId", onDelete: "CASCADE"});
 
 module.exports = MODELCARS;
 

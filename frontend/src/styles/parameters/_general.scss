@@ -34,3 +34,9 @@ h2 {
   align-items: center;
   justify-content: flex-start;
 }
+
+.picture {
+  width:95%;
+  height:160px;
+  object-fit: contain;
+}
