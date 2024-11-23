@@ -3,7 +3,7 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
 const USERS = sequelize.define("USERS", {
-  puserId: {
+  userId: {
     type: DataTypes.INTEGER(4).ZEROFILL,
     autoIncrement: true,
     primaryKey: true,
@@ -32,7 +32,7 @@ const USERS = sequelize.define("USERS", {
   },
   avatar: {
     type: DataTypes.STRING,
-    allowNull:false
+    allowNull:true
   },
   fonction: {
     type: DataTypes.STRING,
@@ -40,23 +40,23 @@ const USERS = sequelize.define("USERS", {
   },
   modelLiked: {
     type: DataTypes.INTEGER,
-    allowNull:false
+    allowNull:true
   },
   pictureLiked: {
     type: DataTypes.INTEGER,
-    allowNull:false
+    allowNull:true
   },
   postLiked: {
     type: DataTypes.INTEGER,
-    allowNull:false
+    allowNull:true
   },
   postNumber: {
     type: DataTypes.INTEGER,
-    allowNull:false
+    allowNull:true
   },
   lastPost: {
     type: DataTypes.INTEGER,
-    allowNull:false
+    allowNull:true
   },
 });
 

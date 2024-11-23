@@ -6,13 +6,10 @@ import InfoBox from "../standardElements/InfoBox";
 // IMPORT DATABANK
 import listOfTeam from "../../dataBank/teamsData.json";
 
-// IMPORT FUNCTIONS
-import { dataOfCar } from "../../utils/searchCarData";
-
-const TeamData = ({ modelCarSelected, season, modelCarData }) => {
+const TeamData = ({ modelCarSelected, modelCarData }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [teamInfo, setTeamInfo] = useState();
-console.log("* :",modelCarData);
+
   if (isLoading === false) {
     if (!teamInfo && modelCarSelected) {
       for (let i = 0; i < listOfTeam.length; i++) {

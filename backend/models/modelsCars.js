@@ -51,7 +51,7 @@ const MODELCARS = sequelize.define("MODELCARS", {
   },
   LikedBy: {
     type: DataTypes.STRING,
-    allowNull:false
+    allowNull:true
   },
 });
 

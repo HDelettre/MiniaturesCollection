@@ -88,16 +88,16 @@ h2 {
 
 .fullBox {
   width: 100%;
+  height: 260px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 3px;
-  border-top: 1px solid red;
   background-color: #F6F4F3;
 }
 
-.choiceBox {
+.choiceBox, .choiceBoxPopup {
   width: 15%;
   min-height: 60px;
   display: flex;
@@ -107,10 +107,15 @@ h2 {
   padding: 10px;
 }
 
+.choiceBoxPopup {
+  width: 90%;
+}
+
 .smallFlag {
+  width: 20%;
   height: 20px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .bigFlag {
@@ -121,8 +126,9 @@ h2 {
 
 .trackPicture {
   width: 95%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  -o-object-fit: contain;
+     object-fit: contain;
+  aspect-ratio: 16/9;
 }
 
 .redBox {
@@ -168,6 +174,24 @@ h2 {
   position: absolute;
 }
 
+.button {
+  background-color: #2565ae;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.buttonInverse {
+  background-color: white;
+  color: #2565ae;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+
 .headerContainer {
   width: 100%;
   height: 100px;
@@ -186,7 +210,66 @@ h2 {
 }
 .headerContainer_user {
   width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.headerContainer_user--button {
+  width: 30%;
+  border: 3px solid #66d3fa;
+  color: yellow;
+  padding: 3px;
+  margin: 5px;
   text-align: center;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.headerContainer_user--button:hover {
+  background-color: #66d3fa;
+  border: 3px solid #2565ae;
+}
+.headerContainer_user img {
+  width: 17%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  aspect-ratio: 1/1;
+  margin: 5px;
+  border-radius: 30%;
+}
+
+.loginContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 5px;
+}
+.loginContainer_box {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.loginContainer_box label {
+  width: 40%;
+  text-align: right;
+  margin-right: 3px;
+}
+.loginContainer_box input {
+  width: 60%;
+  text-align: center;
+}
+
+.userBar {
+  width: 10%;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .navigationBar {
@@ -299,4 +382,40 @@ h2 {
 }
 .modelSheetSmallCard h3 {
   margin: 10px;
+}
+
+.popupPicture {
+  width: 350px;
+  height: 385px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  border: 4px ridge red;
+  position: fixed;
+  top: 10vh;
+  left: 125vh;
+}
+
+.popupSignup {
+  width: 350px;
+  height: 510px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #2565ae;
+  background-color: white;
+  border: 4px ridge #2565ae;
+  position: fixed;
+  top: 10vh;
+  left: 75vh;
+}
+.popupSignup label {
+  width: 40%;
+}
+.popupSignup input {
+  width: 60%;
+  text-align: center;
 }/*# sourceMappingURL=styles.css.map */

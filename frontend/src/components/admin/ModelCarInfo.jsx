@@ -5,6 +5,8 @@ import InfoBox from "../standardElements/InfoBox";
 import PictureBox from "../standardElements/PictureBox";
 import InputBox from "./InputBox";
 import StatusChoice from "./StatusChoice";
+
+// IMPORT FUNCTIONS
 import { CREATE_MODEL } from "../../utils/modelCarRequest";
 import { ADD_NEW_IMAGE, ADD_NEW_PICTURE } from "../../utils/pictureCarRequest";
 
@@ -55,12 +57,10 @@ const ModelCarInfo = ({
     }
   }
   
-  console.log("MODELDATA ",modelData);
   const saveHandle = () => {
     if (accessSave === true) {
       let imageFileName = modelData.picture;
       if (imageFile) {
-        console.log("IMAGE FILE", imageFile.name);
         imageFileName = imageFile.name;
       }
 

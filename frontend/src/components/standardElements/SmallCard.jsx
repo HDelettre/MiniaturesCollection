@@ -9,7 +9,10 @@ const SmallCard = ({ element, setModelSelected, setMenuIndex }) => {
     if (isLoaded === false) {
       (async () => {
         const fetchReponse = await GET_ONE_PICTURE(element.modelCarsId);
-        setModelPicture(fetchReponse.data.pictureName);
+        console.log("FETCH : ", fetchReponse)
+        if (fetchReponse.status === 200) {
+          setModelPicture(fetchReponse.data.pictureName);
+        }
         setIsLoaded(true);
       })();
     }

@@ -22,3 +22,21 @@ z-index: 1;
 position: absolute;
   }
 }
+
+.button {
+  background-color: $colorFirst;
+  color: $colorBack;
+  padding: $marginMedium;
+  border-radius: 5px;
+  margin: $marginMedium;
+  cursor: pointer;
+}
+
+.buttonInverse {
+  background-color: $colorBack;
+  color: $colorFirst;
+  padding: $marginMedium;
+  border-radius: 5px;
+  margin: $marginMedium;
+  cursor: pointer;
+}

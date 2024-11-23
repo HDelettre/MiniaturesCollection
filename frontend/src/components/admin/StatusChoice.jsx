@@ -1,8 +1,7 @@
 import React from "react";
 
 const StatusChoice = ({ setModelStatus }) => {
-  const statusOption = ["En vitrine", "En commande", "A monter", "A modifier"];
-
+  const statusOption = ["En vitrine", "A monter", "A modifier","En livraison", "Payée", "En commande"];
   const selectHandle = (e) => {
     setModelStatus(e.target.value);
   };

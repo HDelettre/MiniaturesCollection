@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 
-const InputCase = ({ generalData, setGeneralData, selectAccess }) => {
-  const [data, setData] = useState();
+const InputCase = ({ generalData, setGeneralData, selectAccess, generalValue }) => {
+  const [data, setData] = useState(generalValue);
 
   const changeHandle = (e) => {
     setData(e.target.value);
     if (generalData === "RACE") {
       setGeneralData({ name: e.target.value });
     }
-    if (generalData==="SAISON") {
-      setGeneralData(e.target.value)
+    if (generalData === "SAISON" || generalData === "update") {
+      setGeneralData(e.target.value);
     }
-    if (generalData==="DRIVER") {
+    if (generalData === "DRIVER") {
       setGeneralData({
         name: e.target.value,
         country: "",
@@ -23,14 +23,13 @@ const InputCase = ({ generalData, setGeneralData, selectAccess }) => {
         qualif: { position: "", time: "", gap: "" },
         race: { position: "", time: "", gap: "" },
         bestLap: { position: "", time: "", gap: "" },
-      })
+      });
     }
-    if (generalData==="MODEL") {
+    if (generalData === "MODEL") {
       setGeneralData({
-        name:e.target.value,
-      })
+        name: e.target.value,
+      });
     }
-    
   };
 
   return (

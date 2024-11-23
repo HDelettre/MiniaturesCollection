@@ -9,17 +9,18 @@ import DriversContainer from "./components/drivers/DriversContainer";
 import SeasonContainer from "./components/seasons/SeasonContainer";
 import TeamContainer from "./components/teams/TeamContainer";
 import AddNewCar from "./components/admin/AddNewCar";
+import ModelSheetContainer from "./components/modelSheet/ModelSheetContainer";
 
 // IMPORT FUNCTIONS
 import { GET_ALL_MODELS } from "./utils/modelCarRequest";
-import ModelSheetContainer from "./components/modelSheet/ModelSheetContainer";
 
 function App() {
   const [menuIndex, setMenuIndex] = useState("home");
+  const [userData, setUserData] = useState()
   const [allModels, setAllModels] = useState();
   const [modelsUpload, setModelsUpload] = useState(false);
   const [latestModels, setLatestModels] = useState();
-  const [modelSelected, setModelSelected] = useState()
+  const [modelSelected, setModelSelected] = useState();
 
   useEffect(() => {
     if (modelsUpload === false) {
@@ -32,14 +33,16 @@ function App() {
     }
   }, [modelsUpload]);
 
-  console.log("MODEL SELECTED : ", modelSelected)
-
   return (
     <div className="appContainer">
-      <Header />
-      <NavigationBar setMenuIndex={setMenuIndex} menuIndex={menuIndex} />
+      <Header userData={userData} setUserData={setUserData} />
+      <NavigationBar setMenuIndex={setMenuIndex} menuIndex={menuIndex} userData={userData} />
       {menuIndex === "home" ? (
-        <HomeContainer latestModels={latestModels} setModelSelected={setModelSelected} setMenuIndex={setMenuIndex} />
+        <HomeContainer
+          latestModels={latestModels}
+          setModelSelected={setModelSelected}
+          setMenuIndex={setMenuIndex}
+        />
       ) : (
         ""
       )}
@@ -48,13 +51,21 @@ function App() {
       {menuIndex === "driver" ? <DriversContainer /> : ""}
       {menuIndex === "admin" ? (
         <AddNewCar
-        setMenuIndex={setMenuIndex}
-        setModelsUpload={setModelsUpload}
+          setMenuIndex={setMenuIndex}
+          setModelsUpload={setModelsUpload}
         />
       ) : (
         ""
       )}
-      {menuIndex === "modelSheet" ? <ModelSheetContainer modelCarsId={modelSelected} /> : "" }
+      {menuIndex === "modelSheet" ? (
+        <ModelSheetContainer
+          modelCarsId={modelSelected}
+          setMenuIndex={setMenuIndex}
+          setModelsUpload={setModelsUpload}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 }

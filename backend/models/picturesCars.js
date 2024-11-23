@@ -20,7 +20,7 @@ const PICTURECARS = sequelize.define("PICTURECARS", {
   },
   LikedBy: {
     type: DataTypes.STRING,
-    allowNull:false
+    allowNull:true
   },
 });
 

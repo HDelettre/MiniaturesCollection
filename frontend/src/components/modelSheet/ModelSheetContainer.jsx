@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from "react";
 
-// IMPORT FUNCTIONS
-import { GET_ONE_MODEL } from "../../utils/modelCarRequest";
-import { modelDataCompil } from "../../utils/searchModelData";
-import { GET_ALL_PICTURE } from "../../utils/pictureCarRequest";
+// IMPORT COMPONENTS
 import GalleriePhoto from "./GalleriePhoto";
-import ModelBar from "../standardElements/ModelBar";
 import MiniatureBox from "./MiniatureBox";
 import RaceBox from "./RaceBox";
 import DriverBox from "./DriverBox";
 import CarBox from "./CarBox";
 import RaceResult from "./RaceResult";
 
-const ModelSheetContainer = ({ modelCarsId }) => {
+// IMPORT FUNCTIONS
+import { GET_ONE_MODEL } from "../../utils/modelCarRequest";
+import { GET_ALL_PICTURE } from "../../utils/pictureCarRequest";
+import { modelDataCompil } from "../../utils/searchModelData";
+
+const ModelSheetContainer = ({
+  modelCarsId,
+  setMenuIndex,
+  setModelsUpload,
+}) => {
   const [isLoadedModel, setIsLoadedModel] = useState(false);
   const [modelData, setModelData] = useState();
   const [modelDataCompilation, setModelDataCompilation] = useState();
@@ -51,15 +56,27 @@ const ModelSheetContainer = ({ modelCarsId }) => {
           pictureCollection={pictureCollection}
           modelData={modelData}
           modelDataCompilation={modelDataCompilation}
+          setIsLoadedModel={setIsLoadedModel}
+          setMenuIndex={setMenuIndex}
+          setModelsUpload={setModelsUpload}
         />
         {modelData.race !== "" ? (
-          <RaceBox modelData={modelData} modelDataCompilation={modelDataCompilation} />
+          <RaceBox
+            modelData={modelData}
+            modelDataCompilation={modelDataCompilation}
+          />
         ) : (
           ""
         )}
-        <DriverBox modelData={modelData} modelDataCompilation={modelDataCompilation} />
-        <CarBox modelData={modelData} modelDataCompilation={modelDataCompilation} />
-        </div>
+        <DriverBox
+          modelData={modelData}
+          modelDataCompilation={modelDataCompilation}
+        />
+        <CarBox
+          modelData={modelData}
+          modelDataCompilation={modelDataCompilation}
+        />
+      </div>
       {modelData.race !== "" ? (
         <RaceResult modelDataCompilation={modelDataCompilation} />
       ) : (

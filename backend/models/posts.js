@@ -20,19 +20,19 @@ const POSTS = sequelize.define("POSTS", {
   },
   message: {
     type: DataTypes.TEXT,
-    allowNull: false
+    allowNull: true
   },
   pictureName: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: true
   },
   linkId: {
     type: DataTypes.INTEGER(8).ZEROFILL,
-    allowNull: false
+    allowNull: true
   },
   LikedBy: {
     type: DataTypes.STRING,
-    allowNull:false
+    allowNull:true
   },
 });
 

@@ -1,7 +1,7 @@
 import React from "react";
 
 // IMPORT DATABANK
-import listOfManufacturer from "../../dataBank/listOfManufacturer";
+import listOfManufacturer from "../../dataBank/listOfManufacturer.json";
 
 const ManufacturerChoice = ({ setManufacturerData, categorie, season, modelData, driverData }) => {
   let selectAccess = true;
@@ -33,8 +33,8 @@ const ManufacturerChoice = ({ setManufacturerData, categorie, season, modelData,
           Sélectionner dans la liste
         </option>
         {listOfManufacturer.map((data) => (
-          <option name={data} key={data} id={data}>
-            {data}
+          <option name={data.name} key={data.name} id={data.name}>
+            {data.name}
           </option>
         ))}
       </select>

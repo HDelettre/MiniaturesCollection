@@ -9,16 +9,16 @@ require("dotenv").config({
 // PATH TO ROUTES
 const routesModelCars = require("./routes/modelsCars");
 const routesPictureCars = require("./routes/picturesCars");
-// const routesUsers = require("./users/routes");
-// const routesPosts = require("./posts/routes");
+const routesPosts = require("./routes/posts");
+const routesUsers = require("./routes/users");
 
 // MYSQL / SEQUELIZE
 const sequelize = require("./config/database");
 // Synchronization of models
 require("./models/modelsCars");
 require("./models/picturesCars");
-// require("./users/models");
-// require("./posts/models");
+require("./models/posts");
+require("./models/users");
 
 sequelize.sync({ alter: true });
 // sequelize.sync({ force: true });
@@ -48,8 +48,8 @@ app.use(express.json());
 // ROUTES CALLING
 app.use("/api/modelCars", routesModelCars);
 app.use("/api/pictureCars", routesPictureCars);
-// app.use("/api/user", routesUsers);
-// app.use("/api/post", routesPosts);
+app.use("/api/posts", routesPosts);
+app.use("/api/users", routesUsers);
 
 // EXPORTS
 module.exports = app;
