@@ -34,7 +34,7 @@ const RaceChoice = ({ season, dataBank, setRaceData, categorie }) => {
   }
 
   const selectHandle = async (e) => {
-    const elmtIndex = document.getElementById("race");
+    const elmtIndex = document.getElementById("raceChoice");
     if (elmtIndex.selectedIndex > 0) {
       await setRaceData(raceList[elmtIndex.selectedIndex - 1]);
     } else {
@@ -48,8 +48,8 @@ const RaceChoice = ({ season, dataBank, setRaceData, categorie }) => {
       {categorie === "F1 with race" ? (
         <select
           className="optionBox"
-          name="race"
-          id="race"
+          name="raceChoice"
+          id="raceChoice"
           onChange={selectHandle}
           disabled={selectAccess}
         >

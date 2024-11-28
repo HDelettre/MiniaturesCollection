@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+
+// IMPORT FUNCTIONS
 import { GET_ONE_PICTURE } from "../../utils/pictureCarRequest";
 
 const SmallCard = ({ element, setModelSelected, setMenuIndex }) => {
@@ -9,7 +11,6 @@ const SmallCard = ({ element, setModelSelected, setMenuIndex }) => {
     if (isLoaded === false) {
       (async () => {
         const fetchReponse = await GET_ONE_PICTURE(element.modelCarsId);
-        console.log("FETCH : ", fetchReponse)
         if (fetchReponse.status === 200) {
           setModelPicture(fetchReponse.data.pictureName);
         }

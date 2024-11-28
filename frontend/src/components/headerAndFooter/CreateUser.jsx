@@ -4,17 +4,21 @@ import React, { useState } from "react";
 import Login from "../navigation/Login";
 import Signup from "../navigation/Signup";
 
-const CreateUser = ({setUserData}) => {
+const CreateUser = ({ setUserData, setMessageInfo }) => {
   const [optionSelect, setOptionSelect] = useState();
 
   const choiceHandle = (e) => {
-    setOptionSelect(e.target.id)
+    setOptionSelect(e.target.id);
   };
 
   return (
     <>
       {optionSelect === "login" ? (
-        <Login setOptionSelect={setOptionSelect} setUserData={setUserData} />
+        <Login
+          setOptionSelect={setOptionSelect}
+          setUserData={setUserData}
+          setMessageInfo={setMessageInfo}
+        />
       ) : (
         <>
           <div
@@ -34,7 +38,14 @@ const CreateUser = ({setUserData}) => {
         </>
       )}
 
-      {optionSelect === "signup" ? <Signup setOptionSelect={setOptionSelect} /> : ""}
+      {optionSelect === "signup" ? (
+        <Signup
+          setOptionSelect={setOptionSelect}
+          setMessageInfo={setMessageInfo}
+        />
+      ) : (
+        ""
+      )}
     </>
   );
 };

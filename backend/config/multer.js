@@ -20,11 +20,14 @@ const storage = multer.diskStorage({
       callback(null, "pictures/drivers");
     } else if (file.fieldname === "logoFile") {
       callback(null, "pictures/logos");
+    } else if (file.fieldname === "postImageFile") {
+      callback(null, "pictures/posts");
     }
   },
 
   filename: (req, file, callback) => {
     const fileExtension = MIME_TYPES[file.mimetype];
+    console.log("***** : ", file.fieldname, "/", file.mimetype);
     let fileName = "";
     if (file.fieldname === "modelPicture") {
       fileName = req.body.modelCarsId + "_" + Date.now() + "." + fileExtension;
@@ -36,6 +39,8 @@ const storage = multer.diskStorage({
       fileName = req.body.imageName;
     } else if (file.fieldname === "logoFile") {
       fileName = req.body.imageName;
+    } else if (file.fieldname === "postImageFile") {
+      fileName = req.body.pictureName + "." + fileExtension;
     }
     callback(null, fileName);
   },
@@ -59,4 +64,5 @@ module.exports = multer({
   { name: "imageFile", maxCount: 1 },
   { name: "driverFile", maxCount: 1 },
   { name: "logoFile", maxCount: 1 },
+  { name: "postImageFile", maxCount: 1 },
 ]);

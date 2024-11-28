@@ -11,7 +11,21 @@
   img {
     width: 95%;
     height: 15em;
-    object-fit: cover;
+    object-fit: contain;
     margin: $marginSmall;
+  }
+}
+
+.logoTeam {
+  width: 12%;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  img {
+    width: 98%;
+    object-fit: contain;
   }
 }

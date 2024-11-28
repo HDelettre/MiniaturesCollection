@@ -27,6 +27,10 @@ h2 {
   font-weight: 600;
 }
 
+h3 {
+  margin: 3px;
+}
+
 .displayContainer {
   width: 100%;
   display: flex;
@@ -40,6 +44,15 @@ h2 {
   height: 160px;
   -o-object-fit: contain;
      object-fit: contain;
+}
+
+.bodyContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-evenly;
 }
 
 .spinloader {
@@ -151,6 +164,22 @@ h2 {
   cursor: pointer;
 }
 
+.messageContainer {
+  position: fixed;
+  top: 10vh;
+  left: 75vh;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 10px double red;
+  color: red;
+  background-color: white;
+  border-radius: 15px;
+  padding: 10px;
+}
+
 .normalIcon {
   width: 10%;
   text-align: center;
@@ -190,6 +219,34 @@ h2 {
   border-radius: 5px;
   margin: 5px;
   cursor: pointer;
+}
+
+.commentButton {
+  width: 20%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  border: 2px solid #2565ae;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.smallIcon {
+  margin: 5px;
+  cursor: pointer;
+}
+
+.likeBox {
+  width: 49px;
+  padding: 3px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.likeBox_valeur {
+  font-size: 12px;
 }
 
 .headerContainer {
@@ -304,9 +361,23 @@ h2 {
 .smallCard img {
   width: 95%;
   height: 15em;
-  -o-object-fit: cover;
-     object-fit: cover;
+  -o-object-fit: contain;
+     object-fit: contain;
   margin: 3px;
+}
+
+.logoTeam {
+  width: 12%;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.logoTeam img {
+  width: 98%;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .adminContainer {
@@ -418,4 +489,86 @@ h2 {
 .popupSignup input {
   width: 60%;
   text-align: center;
+}
+
+.postBloc {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.postContainer {
+  width: 95%;
+  height: 115px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid #2565ae;
+  border-radius: 10px;
+  margin: 5px;
+  background-color: #e1f7fe;
+}
+.postContainer_info {
+  width: 27%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin-left: 5px;
+  border-right: 1px solid #2565ae;
+}
+.postContainer_texte {
+  width: 50%;
+  height: 100%;
+  padding: 3px;
+  border-right: 1px solid #2565ae;
+}
+.postContainer_resume {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: scroll;
+}
+.postContainer textarea {
+  width: 40%;
+  border: none;
+  color: #2565ae;
+  background-color: #c9effd;
+  font-family: "Oswald", sans-serif;
+  font-size: 16px;
+}
+.postContainer_image {
+  width: 20%;
+}
+.postContainer_image img {
+  width: 95%;
+  max-height: 100px;
+  margin: 3px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.postBar {
+  width: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.postMessageBar {
+  width: 3%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid #2565ae;
 }/*# sourceMappingURL=styles.css.map */

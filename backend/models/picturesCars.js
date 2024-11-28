@@ -18,6 +18,10 @@ const PICTURECARS = sequelize.define("PICTURECARS", {
     type: DataTypes.STRING,
     allowNull: false
   },
+  legend: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
   LikedBy: {
     type: DataTypes.STRING,
     allowNull:true

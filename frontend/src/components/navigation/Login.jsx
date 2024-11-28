@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { LOGIN_USER } from "../../utils/userRequest";
 
-const Login = ({ setOptionSelect, setUserData }) => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+const Login = ({ setOptionSelect, setUserData, setMessageInfo }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const emailHandle = (e) => {
     setEmail(e.target.value);
@@ -23,9 +23,13 @@ const Login = ({ setOptionSelect, setUserData }) => {
       };
       (async () => {
         const fetchLogin = await LOGIN_USER(loginRequest);
+        console.log(fetchLogin);
         if (fetchLogin.status === 200) {
           await setUserData(fetchLogin.data);
           await setOptionSelect();
+          await setMessageInfo("Connection réussie")
+        } else {
+          await setMessageInfo(fetchLogin.message)
         }
       })();
     }

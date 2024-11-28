@@ -85,3 +85,19 @@
     cursor: pointer;
   }
 }
+
+.messageContainer {
+  position: fixed;
+  top: 10vh;
+  left: 75vh;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 10px double $colorFourth;
+  color: $colorFourth;
+  background-color: white;
+  border-radius: 15px;
+  padding: $marginLarge;
+}

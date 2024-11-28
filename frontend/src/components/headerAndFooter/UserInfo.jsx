@@ -1,9 +1,9 @@
 import React from 'react';
 
-const UserInfo = ({userData, setUserData}) => {
+const UserInfo = ({userData, setUserData, defaultUser}) => {
 
   const logoutHandle = () => {
-    setUserData()
+    setUserData(defaultUser)
   }
 
   return (
@@ -20,4 +20,3 @@ const UserInfo = ({userData, setUserData}) => {
 }
 
 export default UserInfo;
-<i class="fa-solid fa-right-to-bracket"></i>

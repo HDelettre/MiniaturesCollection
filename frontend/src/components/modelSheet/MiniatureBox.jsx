@@ -10,8 +10,9 @@ const MiniatureBox = ({
   setIsLoadedModel,
   setMenuIndex,
   setModelsUpload,
+  userData,
+  setMessageInfo,
 }) => {
-  pictureCollection.map((data) => console.log(data.pictureName));
 
   return (
     <div className="modelSheetCard">
@@ -39,6 +40,8 @@ const MiniatureBox = ({
         pictureCollection={pictureCollection}
         setMenuIndex={setMenuIndex}
         setModelsUpload={setModelsUpload}
+        userId={userData.userId}
+        setMessageInfo={setMessageInfo}
       />
     </div>
   );

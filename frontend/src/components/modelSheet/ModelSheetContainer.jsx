@@ -7,6 +7,8 @@ import RaceBox from "./RaceBox";
 import DriverBox from "./DriverBox";
 import CarBox from "./CarBox";
 import RaceResult from "./RaceResult";
+import AddPost from "../posts/AddPost";
+import PostContainer from "../posts/PostContainer";
 
 // IMPORT FUNCTIONS
 import { GET_ONE_MODEL } from "../../utils/modelCarRequest";
@@ -17,11 +19,17 @@ const ModelSheetContainer = ({
   modelCarsId,
   setMenuIndex,
   setModelsUpload,
+  userData,
+  allPosts,
+  setMessageInfo,
 }) => {
   const [isLoadedModel, setIsLoadedModel] = useState(false);
   const [modelData, setModelData] = useState();
   const [modelDataCompilation, setModelDataCompilation] = useState();
   const [pictureCollection, setPictureCollection] = useState();
+  const [newPost, setNewPost] = useState(false);
+  const [modelPosts, setModelPosts] = useState("");
+  const [modelPostsLoaded, setModelPostsLoaded] = useState(false);
 
   useEffect(() => {
     if (isLoadedModel === false) {
@@ -38,12 +46,27 @@ const ModelSheetContainer = ({
     }
   }, [isLoadedModel, modelCarsId, modelData, modelDataCompilation]);
 
+  useEffect(() => {
+    if (modelPostsLoaded === false) {
+      (async () => {
+        const postFilter = await allPosts.filter(
+          (post) => post.modelCarsId == modelCarsId
+        );
+        setModelPosts(postFilter);
+        setModelPostsLoaded(true);
+      })();
+    }
+  }, [allPosts, modelPostsLoaded]);
+
+  const postHandle = () => {
+    setNewPost(true);
+  };
+
   return isLoadedModel === true ? (
     <div className="displayContainer">
       <div className="modelSheetTitleBox">
         <h2>
-          {modelData.model} - {modelData.driver} - {modelData.race}{" "}
-          {modelData.season}
+          {`${modelData.model} - ${modelData.driver} - ${modelData.race} ${modelData.season}`}
         </h2>
         <img
           className="imageTitle"
@@ -59,6 +82,8 @@ const ModelSheetContainer = ({
           setIsLoadedModel={setIsLoadedModel}
           setMenuIndex={setMenuIndex}
           setModelsUpload={setModelsUpload}
+          userData={userData}
+          setMessageInfo={setMessageInfo}
         />
         {modelData.race !== "" ? (
           <RaceBox
@@ -85,8 +110,39 @@ const ModelSheetContainer = ({
       <GalleriePhoto
         pictureCollection={pictureCollection}
         modelData={modelData}
+        userData={userData}
+        setIsLoadedModel={setIsLoadedModel}
+        setMessageInfo={setMessageInfo}
       />
       <div className="titleBox">Commentaires :</div>
+      <div className="fullLine">
+        {userData.userId !== "0000" ? (
+          <div className="commentButton" onClick={postHandle}>
+            <span>AJOUTER UN COMMENTAIRE :</span>
+            <span className="fa-regular fa-comment" />
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
+      {newPost === true ? (
+        <AddPost
+          setNewPost={setNewPost}
+          userData={userData}
+          modelData={modelData}
+        />
+      ) : (
+        ""
+      )}
+      {modelPostsLoaded === true ? (
+        <div className="postContainer_resume">
+          {modelPosts.map((post) => (
+            <PostContainer data={post} userData={userData} key={post.postId} />
+          ))}
+        </div>
+      ) : (
+        <span className="spinloader" />
+      )}
     </div>
   ) : (
     <span className="spinloader" />

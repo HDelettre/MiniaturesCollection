@@ -19,7 +19,9 @@ exports.createModelCar = async (req, res) => {
 
 exports.getAllModelCars = async (req, res) => {
   try {
-    const response = await MODELCARS.findAll();
+    const response = await MODELCARS.findAll({
+      order: [["createdAt", "ASC"]]
+    });
     if (!response) {
       return res
         .status(404)
@@ -51,7 +53,7 @@ exports.getOneModelCar = async (req, res) => {
       .json({ message: "Les données ont été récupérées ! ", data: response });
   } catch (error) {
     return res.status(500).json({
-      message: "GetAllModelCars : Le serveur est indisponible !",
+      message: "GetOneModelCar : Le serveur est indisponible !",
       data: error,
     });
   }
@@ -64,14 +66,12 @@ exports.updateModelCar = async (req, res) => {
     });
     return res
       .status(200)
-      .json({ message: "Le modeèle a été modifié avec succès :)", data: "" });
+      .json({ message: "Le modèle a été modifié avec succès :)", data: "" });
   } catch (error) {
-    return res
-      .status(500)
-      .json({
-        message: "Erreur lors de la modification du profil !",
-        data: error,
-      });
+    return res.status(500).json({
+      message: "Erreur lors de la modification du modèle !",
+      data: error,
+    });
   }
 };
 
@@ -87,26 +87,19 @@ exports.deleteModelCar = async (req, res) => {
       });
     }
   }
-
   deletePicture(deleteFiles);
-
   try {
     await MODELCARS.destroy({
       where: { modelCarsId: req.params.id },
     });
-
-    return res
-      .status(200)
-      .json({
-        message: "Le modèle a été supprimé avec succès :)",
-        data: req.body,
-      });
+    return res.status(200).json({
+      message: "Le modèle a été supprimé avec succès :)",
+      data: "",
+    });
   } catch (error) {
-    return res
-      .status(500)
-      .json({
-        message: "Erreur lors de la suppression du modèle !",
-        data: error,
-      });
+    return res.status(500).json({
+      message: "Erreur lors de la suppression du modèle !",
+      data: error,
+    });
   }
 };
